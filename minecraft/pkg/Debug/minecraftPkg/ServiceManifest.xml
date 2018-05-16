@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceManifest Name="minecraftPkg"
+                 Version="2.0.2"
+                 xmlns="http://schemas.microsoft.com/2011/01/fabric"
+                 xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ServiceTypes>
+    <StatelessServiceType ServiceTypeName="minecraftType" UseImplicitHost="true">
+      <!-- TIP: Pinning the service to a specific node can be useful for debugging -->
+      <!--<PlacementConstraints>(NodeName==_nt1vm_0)</PlacementConstraints>-->
+    </StatelessServiceType>
+  </ServiceTypes>
+
+  <CodePackage Name="Code" Version="2.0.2">
+
+    <!-- We need to do some setup on the node before the container starts to set up SMB global mappings -->
+    <SetupEntryPoint>
+      <ExeHost>
+        <Program>setup.bat</Program>
+        <WorkingFolder>CodePackage</WorkingFolder>
+        <!-- TIP: Console redirection is essential for capturing stdout/stderr during development -->
+        <!-- TIP: These logs will be located in D:\SvcFab\_App\{instance}\logs by default -->
+        <ConsoleRedirection FileRetentionCount="5" FileMaxSizeInKb="2048"/>
+      </ExeHost>
+    </SetupEntryPoint>
+    
+    <EntryPoint>
+      <!-- TIP: Don't forget to set isolation="hyperv" in ContainerHostPolicies inside ApplicationManifest.xml if you're running 2016 containers on a 1709 host -->
+      <ContainerHost>
+        <ImageName>openhack/minecraft-server:1.0-nanoserver-1709</ImageName>
+      </ContainerHost>
+    </EntryPoint>
+    
+    <EnvironmentVariables>
+      <!-- TIP: This environment var is always required, so we set it here -->
+      <EnvironmentVariable Name="EULA" Value="TRUE" />
+      
+      <!-- TIP: These are used as placeholders and should be overridden in ApplicationManifest.xml -->
+      <EnvironmentVariable Name="container_storageAccountName" Value="" />
+      <EnvironmentVariable Name="container_storageAccountKey" Value="" />
+      <EnvironmentVariable Name="container_storageAccountShare" Value="" />
+      <EnvironmentVariable Name="container_dataFolder" Value="" />
+    </EnvironmentVariables>
+    
+  </CodePackage>
+
+  <Resources>
+    <Endpoints>
+      <!-- TIP: We'll define that 2 ports are exposed for this container, but let Service Fabric auto-assign port numbers but default -->
+      <!-- TIP: The port numbers will be explicitly set in ResourceOverrides inside ApplicationManifest.xml -->
+      <Endpoint Name="minecraftEndpoint" Protocol="tcp" />
+      <Endpoint Name="minecraftRCONEndpoint" Protocol="tcp" />
+    </Endpoints>
+  </Resources>
+</ServiceManifest>

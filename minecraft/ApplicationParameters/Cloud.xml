@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application Name="fabric:/minecraft" xmlns="http://schemas.microsoft.com/2011/01/fabric" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Parameters>
+    <Parameter Name="StorageAccountName" Value="fgljwr7aieh2g2" />
+    <Parameter Name="StorageAccountKey" Value="LxldRwL/e8qahw42NNQ9g8X+RuLq1PM2dd/KfqjYpKN4wxEk+vQ8WFsnGb79Eu98ChNYlSTMvsD/Zh4OSEkQTw==" />
+    <Parameter Name="StorageAccountShare" Value="minecraft" />
+    <!-- The format used by AddSMBGlobalMappings.ps1 is: "D:\smbmappings\{storageAccount}-{shareName}\minecraft" -->
+    <Parameter Name="DataFolder" Value="D:\smbmappings\fgljwr7aieh2g2-minecraft\world1" />
+  </Parameters>
+</Application>

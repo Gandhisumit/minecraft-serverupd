@@ -1,0 +1,3 @@
+C:\Users\sg\Downloads\service-fabric-1709-demo-master\service-fabric-1709-demo-master\minecraft\minecraft\bin\Debug\ApplicationPackageRoot\minecraftPkg\Code\setup.bat
+C:\Users\sg\Downloads\service-fabric-1709-demo-master\service-fabric-1709-demo-master\minecraft\minecraft\bin\Debug\ApplicationPackageRoot\minecraftPkg\Code\AddSMBGlobalMapping.ps1
+C:\Users\sg\Downloads\service-fabric-1709-demo-master\service-fabric-1709-demo-master\minecraft\minecraft\obj\x64\Debug\minecraft.sfproj.CoreCompileInputs.cache
